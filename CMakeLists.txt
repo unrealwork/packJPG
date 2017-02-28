@@ -17,18 +17,18 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 set(SOURCES
-        source/aricoder.cpp
-        source/bitops.cpp
-        source/packjpg.cpp
+        src/aricoder.cpp
+        src/bitops.cpp
+        src/packjpg.cpp
         )
 
 set(HEADERS
-        source/aricoder.h
-        source/bitops.h
-        source/dct8x8.h
-        source/packjpglib.h
-        source/packjpgdll.h
-        source/pjpgtbl.h
+        src/aricoder.h
+        src/bitops.h
+        src/dct8x8.h
+        src/packjpglib.h
+        src/packjpgdll.h
+        src/pjpgtbl.h
         )
 
 add_executable(${BINARY} ${SOURCES} ${HEADERS})
