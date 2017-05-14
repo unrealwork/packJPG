@@ -6627,6 +6627,7 @@ INTERN inline float median_float( float* values, int size )
 	done = false;
 	while ( !done ) {
 		done = true;
+
 		for ( i = 1; i < size; i++ )
 		if ( values[ i ] < values[ i - 1 ] ) {
 			swap = values[ i ];
