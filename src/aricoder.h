@@ -1,3 +1,5 @@
+#include "symbol.h"
+
 // defines for coder
 #define CODER_USE_BITS        31 // must never be above 31
 #define CODER_LIMIT100        ( (unsigned int) ( 1 << CODER_USE_BITS ) )
@@ -7,13 +9,6 @@
 #define CODER_MAXSCALE        CODER_LIMIT025 - 1
 #define ESCAPE_SYMBOL        CODER_LIMIT025
 
-
-// symbol struct, used in arithmetic coding
-struct symbol {
-    unsigned int low_count;
-    unsigned int high_count;
-    unsigned int scale;
-};
 
 // table struct, used in in statistical models,
 // holding all info needed for one context

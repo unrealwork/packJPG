@@ -48,5 +48,5 @@ else(OPENMP_FOUND)
     message("ERROR: OpenMP could not be found.")
 endif(OPENMP_FOUND)
 
-add_executable(${BINARY} ${SOURCES} ${HEADERS})
+add_executable(${BINARY} ${SOURCES} ${HEADERS} src/symbol.h)
 add_library(${BINARY}.a SHARED ${SOURCES} ${HEADERS})
