@@ -1,7 +1,3 @@
-//
-// Created by shmagrinskiy on 5/21/17.
-//
-
 #ifndef PACKJPG_SYMBOL_H
 #define PACKJPG_SYMBOL_H
 // symbol struct, used in arithmetic coding

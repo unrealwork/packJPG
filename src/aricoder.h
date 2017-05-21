@@ -1,18 +1,6 @@
 #include "symbol.h"
 #include "coder_limits.h"
-
-// table struct, used in in statistical models,
-// holding all info needed for one context
-struct table {
-    // counts for each symbol contained in the table
-    unsigned short *counts;
-    // links to higher order contexts
-    struct table **links;
-    // link to lower order context
-    struct table *lesser;
-    // accumulated counts
-    unsigned int scale;
-};
+#include "table_s.h"
 
 // special table struct, used in in model_s,
 // holding additional info for a speedier 'totalize_table'

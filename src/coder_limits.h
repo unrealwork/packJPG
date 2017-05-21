@@ -1,7 +1,3 @@
-//
-// Created by shmagrinskiy on 5/21/17.
-//
-
 #ifndef PACKJPG_CODER_LIMITS_H
 #define PACKJPG_CODER_LIMITS_H
 
