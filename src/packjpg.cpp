@@ -6597,6 +6597,7 @@ INTERN inline int median_int( int* values, int size )
 	done = false;
 	while ( !done ) {
 		done = true;
+        #pragma omp parallel for
 		for ( i = 1; i < size; i++ )
 		if ( values[ i ] < values[ i - 1 ] ) {
 			swap = values[ i ];
@@ -6627,7 +6628,7 @@ INTERN inline float median_float( float* values, int size )
 	done = false;
 	while ( !done ) {
 		done = true;
-
+        #pragma omp parallel for
 		for ( i = 1; i < size; i++ )
 		if ( values[ i ] < values[ i - 1 ] ) {
 			swap = values[ i ];
