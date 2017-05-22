@@ -17,14 +17,14 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 # Sources
 set(SOURCES
-        src/aricoder.cpp
-        src/bitops.cpp
+        src/aricoder/aricoder.cpp
+        src/utils/bitops.cpp
         src/packjpg.cpp
         )
 # Headers
 set(HEADERS
-        src/aricoder.h
-        src/bitops.h
+        src/aricoder/aricoder.h
+        src/utils/bitops.h
         src/dct8x8.h
         src/packjpglib.h
         src/packjpgdll.h
@@ -48,5 +48,5 @@ else(OPENMP_FOUND)
     message("ERROR: OpenMP could not be found.")
 endif(OPENMP_FOUND)
 
-add_executable(${BINARY} ${SOURCES} ${HEADERS} src/symbol.h src/coder_limits.h src/table.h src/table_s.h src/model_s.cpp src/model_s.h src/model_b.cpp src/model_b.h)
+add_executable(${BINARY} ${SOURCES} ${HEADERS} src/aricoder/symbol.h src/aricoder/coder_limits.h src/aricoder/table.h src/aricoder/table_s.h src/aricoder/model_s.cpp src/aricoder/model_s.h src/aricoder/model_b.cpp src/aricoder/model_b.h src/utils/common_utils.h)
 add_library(${BINARY}.a SHARED ${SOURCES} ${HEADERS})
