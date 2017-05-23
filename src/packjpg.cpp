@@ -5519,6 +5519,7 @@ INTERN bool pjg_decode_dc( aricoder* dec, int cmp )
 	max_len = BITLEN1024P( max_val );
 	
 	// init models for bitlenghts and -patterns
+
 	mod_len = INIT_MODEL_S( max_len + 1, ( segm_cnt[cmp] > max_len ) ? segm_cnt[cmp] : max_len + 1, 2 );
 	mod_res = INIT_MODEL_B( ( segm_cnt[cmp] < 16 ) ? 1 << 4 : segm_cnt[cmp], 2 );
 	mod_sgn = INIT_MODEL_B( 1, 0 );
@@ -6591,7 +6592,7 @@ INTERN inline int median_int( int* values, int size )
 {
 	int middle = ( size >> 1 );
 	// sort data first
-	common_utils::insertion_sort(values, size);
+    common_utils::sort(values, size);
 	// return median
 	return ( ( size % 2 ) == 0 ) ?
 		( values[ middle ] + values[ middle - 1 ] ) / 2 : values[ middle ];
@@ -6609,7 +6610,7 @@ INTERN inline float median_float( float* values, int size )
 	int i;
 
 	// sort data first
-    common_utils::insertion_sort(values,size);
+    common_utils::sort(values, size);
 	
 	// return median	
 	if ( ( size % 2 ) == 0 ) {
