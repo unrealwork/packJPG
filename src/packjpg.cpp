@@ -274,9 +274,10 @@ packJPG by Matthias Stirner, 01/2016
 #include <string.h>
 #include <math.h>
 #include <ctime>
+#include <src/utils/common_utils.h>
 
-#include "bitops.h"
-#include "aricoder.h"
+#include "src/utils/bitops.h"
+#include "src/aricoder/aricoder.h"
 #include "pjpgtbl.h"
 #include "dct8x8.h"
 
@@ -3120,7 +3121,8 @@ INTERN bool predict_dc( void )
 	
 	
 	// apply prediction, store prediction error instead of DC
-	for ( cmp = 0; cmp < cmpc; cmp++ ) {
+
+    for ( cmp = 0; cmp < cmpc; cmp++ ) {
 		absmaxp = MAX_V( cmp, 0 );
 		absmaxn = -absmaxp;
 		corr_f = ( ( 2 * absmaxp ) + 1 );
@@ -5517,6 +5519,7 @@ INTERN bool pjg_decode_dc( aricoder* dec, int cmp )
 	max_len = BITLEN1024P( max_val );
 	
 	// init models for bitlenghts and -patterns
+
 	mod_len = INIT_MODEL_S( max_len + 1, ( segm_cnt[cmp] > max_len ) ? segm_cnt[cmp] : max_len + 1, 2 );
 	mod_res = INIT_MODEL_B( ( segm_cnt[cmp] < 16 ) ? 1 << 4 : segm_cnt[cmp], 2 );
 	mod_sgn = INIT_MODEL_B( 1, 0 );
@@ -6588,24 +6591,8 @@ INTERN inline int plocoi( int a, int b, int c )
 INTERN inline int median_int( int* values, int size )
 {
 	int middle = ( size >> 1 );
-	bool done;
-	int swap;
-	int i;
-	
-	
 	// sort data first
-	done = false;
-	while ( !done ) {
-		done = true;
-		for ( i = 1; i < size; i++ )
-		if ( values[ i ] < values[ i - 1 ] ) {
-			swap = values[ i ];
-			values[ i ] = values[ i - 1 ];
-			values[ i - 1 ] = swap;
-			done = false;
-		}
-	}
-	
+    common_utils::sort(values, size);
 	// return median
 	return ( ( size % 2 ) == 0 ) ?
 		( values[ middle ] + values[ middle - 1 ] ) / 2 : values[ middle ];
@@ -6621,21 +6608,9 @@ INTERN inline float median_float( float* values, int size )
 	bool done;
 	float swap;
 	int i;
-	
-	
-	// sort data first
-	done = false;
-	while ( !done ) {
-		done = true;
 
-		for ( i = 1; i < size; i++ )
-		if ( values[ i ] < values[ i - 1 ] ) {
-			swap = values[ i ];
-			values[ i ] = values[ i - 1 ];
-			values[ i - 1 ] = swap;
-			done = false;
-		}
-	}
+	// sort data first
+    common_utils::sort(values, size);
 	
 	// return median	
 	if ( ( size % 2 ) == 0 ) {
